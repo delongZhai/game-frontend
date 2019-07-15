@@ -1,0 +1,27 @@
+<table [ngClass]="'table table-hover'" [ngStyle]="{'text-align': 'center'}">
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Publisher</td>
+            <td>On Sale</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let game of games" id="">
+            <td>{{game._id}}</td>
+            <td>{{game.title}}</td>
+            <td>{{game.publisher}}</td>
+            <div *ngIf="game.onSale === true; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <td>Yes</td>
+            </ng-template>
+            <ng-template #elseBlock>
+                <td>No</td>
+            </ng-template>
+            <td>{{game.price}}</td>
+            <td><a [routerLink]="['/games', game._id]" routerLinkActive="active" >View Details</a></td>
+        </tr>
+    </tbody>
+</table>
